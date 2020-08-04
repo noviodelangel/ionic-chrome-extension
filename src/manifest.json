@@ -3,6 +3,18 @@
   "version": "1.0",
   "description": "Allows quickly adding tasks to learning app",
   "manifest_version": 2,
+  "permissions": [
+    "activeTab",
+    "webNavigation"
+  ],
+  "background": {
+    "scripts": [
+      "runtime-es2015.js",
+      "runtime-es5.js",
+      "background-es2015.js",
+      "background-es5.js"
+    ]
+  },
   "browser_action": {
     "default_popup": "index.html"
   }
