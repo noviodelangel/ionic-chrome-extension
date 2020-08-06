@@ -13,7 +13,9 @@ export class PopupComponent implements OnInit {
   ngOnInit() {}
 
   intercept(): void {
-    chrome.tabs.executeScript( { code: 'window.getSelection().toString();' }, selectedText => this.selectedText = selectedText[0]);
+    chrome.tabs.executeScript( { code: `var fragment = window.getSelection().getRangeAt(0).cloneContents(); var div = document.createElement('div'); div.appendChild(fragment.cloneNode(true)); div.innerHTML` }, selectedText => {
+      this.selectedText = selectedText[0];
+    });
   }
 
 }
