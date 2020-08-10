@@ -3,9 +3,13 @@
   "version": "1.0",
   "description": "Allows quickly adding tasks to learning app",
   "manifest_version": 2,
+  "icons": {
+    "78": "assets/icon/LifeSuite.png"
+  },
   "permissions": [
     "activeTab",
-    "webNavigation"
+    "webNavigation",
+    "contextMenus"
   ],
   "background": {
     "scripts": [
