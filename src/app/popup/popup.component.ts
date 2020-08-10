@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RichTextInterceptorService} from '../services/rich-text-interceptor.service';
 
 @Component({
   selector: 'app-popup',
@@ -8,14 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class PopupComponent implements OnInit {
   public selectedText = '';
 
-  constructor() { }
+  constructor(private richTextInterceptor: RichTextInterceptorService) { }
 
   ngOnInit() {}
 
   intercept(): void {
-    chrome.tabs.executeScript( { code: `var fragment = window.getSelection().getRangeAt(0).cloneContents(); var div = document.createElement('div'); div.appendChild(fragment.cloneNode(true)); div.innerHTML` }, selectedText => {
-      this.selectedText = selectedText[0];
-    });
+    this.richTextInterceptor.intercept(selectedText => this.selectedText = selectedText[0]);
   }
 
 }
