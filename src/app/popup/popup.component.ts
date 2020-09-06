@@ -26,7 +26,7 @@ export class PopupComponent implements OnInit {
   }
 
   loginWihGoogle() {
-    auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider())
+    auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
         .then(() => alert(`Logged in`))
         .catch((error) => alert(`Sign in error: ${error}`));
   }
