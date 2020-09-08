@@ -13,6 +13,8 @@
   ],
   "background": {
     "scripts": [
+      "firebase-auth-es2015.js",
+      "firebase-auth-es5.js",
       "runtime-es2015.js",
       "runtime-es5.js",
       "background-es2015.js",

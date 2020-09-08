@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {auth} from 'firebase';
 import {RichTextInterceptorService} from '../services/rich-text-interceptor.service';
 import * as firebase from 'firebase';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-popup',
@@ -10,8 +11,14 @@ import * as firebase from 'firebase';
 })
 export class PopupComponent implements OnInit {
   public selectedText = '';
+  currentUser: firebase.User | null = null;
 
-  constructor(private richTextInterceptor: RichTextInterceptorService) { }
+  constructor(private richTextInterceptor: RichTextInterceptorService,
+              private angularFireAuth: AngularFireAuth) {
+    this.angularFireAuth.authState.subscribe(user  => {
+      this.currentUser = user;
+    });
+  }
 
   ngOnInit() {}
 
@@ -21,13 +28,13 @@ export class PopupComponent implements OnInit {
 
   login() {
     auth().signInWithEmailAndPassword('user1@email.com', '1234567')
-        .then((userCredential) => alert(`Logged in: ${userCredential.user?.uid}`))
+        .then((userCredential) => this.currentUser = userCredential.user)
         .catch((error) => alert(`Sign in error: ${error}`));
   }
 
   loginWihGoogle() {
     auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
-        .then(() => alert(`Logged in`))
+        .then((userCredential) => this.currentUser = userCredential.user)
         .catch((error) => alert(`Sign in error: ${error}`));
   }
 }
