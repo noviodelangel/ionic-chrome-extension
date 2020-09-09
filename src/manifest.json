@@ -12,17 +12,10 @@
     "contextMenus"
   ],
   "background": {
-    "scripts": [
-      "firebase-auth-es2015.js",
-      "firebase-auth-es5.js",
-      "runtime-es2015.js",
-      "runtime-es5.js",
-      "background-es2015.js",
-      "background-es5.js"
-    ]
+    "page": "background.html"
   },
   "browser_action": {
     "default_popup": "index.html"
   },
-  "content_security_policy": "script-src 'self' https://apis.google.com; object-src 'self'"
+  "content_security_policy": "script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com https://apis.google.com; object-src 'self'"
 }

@@ -9,7 +9,7 @@
   "files": [
     "src/main.ts",
     "src/polyfills.ts",
-    "src/background.ts"
+    "src/background/background.ts"
   ],
   "include": [
     "src/**/*.ts",
