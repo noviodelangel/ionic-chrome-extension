@@ -33,8 +33,11 @@ export class PopupComponent implements OnInit {
   }
 
   loginWihGoogle() {
-    auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
-        .then((userCredential) => this.currentUser = userCredential.user)
-        .catch((error) => alert(`Sign in error: ${error}`));
+    // @ts-ignore
+    chrome.runtime.sendMessage({
+      command: 'login'
+    }, (response) => {
+      console.log(`Login response: ${response}`);
+    });
   }
 }
