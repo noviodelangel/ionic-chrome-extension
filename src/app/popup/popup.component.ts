@@ -37,7 +37,12 @@ export class PopupComponent implements OnInit {
     chrome.runtime.sendMessage({
       command: 'login'
     }, (response) => {
-      console.log(`Login response: ${response}`);
+      console.log('Log  in response===', response);
     });
+  }
+
+  logout() {
+    auth().signOut()
+        .then(() => this.currentUser = null);
   }
 }
